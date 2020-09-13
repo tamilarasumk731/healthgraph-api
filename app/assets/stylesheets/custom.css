@@ -1,0 +1,176 @@
+html,
+body {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.template-wrapper {
+  max-width: 576px;
+  margin: 0 auto;
+}
+
+.image-wrapper {
+  height: 42vh;
+  width: 100vw;
+  background-size: cover;
+  max-width: 576px;
+}
+
+.meaning-wrapper {
+  background: rgb(55, 23, 61);
+  height: 42vh;
+  width: 100vw;
+}
+
+.meaning-wrapper .heading {
+  color: #fff;
+  margin: 52px 0 18px 16px;
+  font-size: 18px;
+}
+
+.type {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 30px 16px;
+}
+
+.meaning {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 0 16px;
+}
+
+.content-wrapper {
+  height: 50vh;
+  width: 100vw;
+  max-width: 576px;
+  overflow-y: auto;
+}
+
+.next-article {
+  width: 100vw;
+  max-width: 576px;
+  height: 8vh;
+  background: rgb(76, 75, 75);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+.articles-links {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  max-width: 576px;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+}
+.play-app-stores {
+  padding: 15px;
+  background-color: #21d4fd;
+  background-image: linear-gradient(-25deg, #21d4fd 0%, #b721ff 100%);
+  display: none;
+}
+.play-app-stores a {
+  color: #ffffff;
+  text-decoration: none;
+  position: relative;
+}
+.play-app-stores a:hover {
+  background-color: transparent;
+}
+.play-app-stores a:before {
+  content: "";
+  position: absolute;
+  height: 1px;
+  width: 0;
+  left: 0;
+  bottom: -3px;
+  background-color: #ffffff;
+  transition: width 200ms;
+}
+.play-app-stores a:hover:before {
+  width: 100%;
+}
+
+.next-article .next {
+  color: #fff;
+  font-size: 14px;
+}
+
+.next-article img {
+  width: 30px;
+  height: 30px;
+  margin-right: 23px;
+  margin-left: 8px;
+}
+
+.content-wrapper .heading {
+  font-size: 18px;
+  color: #000;
+  font-weight: 600;
+  margin: 28px 16px 15px 16px;
+}
+
+.content-wrapper .content {
+  font-size: 16px;
+  color: rgb(86, 86, 86);
+  margin: 0 16px;
+}
+
+.flip-card {
+  background-color: #eee;
+  width: 100vw;
+  height: 42vh;
+  perspective: 0px;
+  max-width: 576px;
+}
+
+.special {
+  color: rgb(208, 32, 55);
+  font-weight: 500;
+  margin: 0;
+  cursor: pointer;
+  border-bottom: 1px solid rgb(208, 32, 55);
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s ease-in-out;
+  transform-style: preserve-3d;
+}
+
+.rotate {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+}
