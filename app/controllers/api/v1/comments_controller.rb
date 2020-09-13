@@ -8,7 +8,7 @@ module Api
         if @post.save 
           render json: {status: true, message: "Comment creation successful"}, status: :ok and return
         else
-          render json: { status: false, messages: @post.errors.full_messages.to_sentence }, status: :unprocessable_entity and return
+          render json: { status: false, messages: @post.errors.full_messages.to_sentence }, status: :ok and return
         end
       end
 
@@ -18,7 +18,7 @@ module Api
           @comment.update(is_deleted: true)
           render json: {status: true, message: "Comment moved to trash"}, status: :ok and return
         else
-          render json: {status: false, message: "Comment not found"}, status: :not_found and return
+          render json: {status: false, message: "Comment not found"}, status: :ok and return
         end
       end
 
@@ -29,10 +29,10 @@ module Api
             @comment.update(is_deleted: false)
             render json: {status: true, message: "Comment restored to feed"}, status: :ok and return
           else
-            render json: {status: false, message: "Comment not found"}, status: :not_found and return
+            render json: {status: false, message: "Comment not found"}, status: :ok and return
           end
         rescue Exception => e
-          return render json: { error: e.message }, status: :unprocessable_entity
+          return render json: {status: false, error: e.message }, status: :ok
         end
       end
 
@@ -43,11 +43,15 @@ module Api
             @comment.destroy
             render json: {status: true, message: "Comment deleted successful"}, status: :ok and return
           else
-            render json: {status: false, message: "Comment not found"}, status: :not_found and return
+            render json: {status: false, message: "Comment not found"}, status: :ok and return
           end
         rescue Exception => e
-          return render json: { error: e.message }, status: :unprocessable_entity
+          return render json: {status: false, error: e.message }, status: :ok
         end
+      end
+
+      def get_trash_comment
+        @comments = Comment.where(is_deleted: true)
       end
 
       private
@@ -58,7 +62,7 @@ module Api
       def set_post
         @post = Post.find(comment_params[:post_id])
         unless @post
-          render json: {status: false, message: "Post not found"}, status: :not_found and return
+          render json: {status: false, message: "Post not found"}, status: :ok and return
         end
       end
     end

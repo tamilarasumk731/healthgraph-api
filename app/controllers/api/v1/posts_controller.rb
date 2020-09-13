@@ -5,7 +5,7 @@ module Api
     	def create_post
     		@post = Post.new(post_params)
     		unless @post.save 
-	          render json: { status: false, messages: @post.errors.full_messages.to_sentence }, status: :unprocessable_entity and return
+	          render json: { status: false, messages: @post.errors.full_messages.to_sentence }, status: :ok and return
 	        else
 	          render json: {status: true, message: "Post creation successful"}, status: :ok and return
 	        end
@@ -25,7 +25,7 @@ module Api
     			@post.update(is_deleted: true)
     			render json: {status: true, message: "Post moved to trash"}, status: :ok and return
     		else
-    			render json: {status: false, message: "Post not found"}, status: :not_found and return
+    			render json: {status: false, message: "Post not found"}, status: :ok and return
     		end
     	end
 
@@ -38,10 +38,10 @@ module Api
 
 	    			render json: {status: true, message: "Post restored to feed"}, status: :ok and return
 	    		else
-	    			render json: {status: false, message: "Post not found"}, status: :not_found and return
+	    			render json: {status: false, message: "Post not found"}, status: :ok and return
 	    		end
 	    	rescue Exception => e
-          return render json: { error: e.message }, status: :unprocessable_entity
+          return render json: {status: false, error: e.message }, status: :ok
         end
     	end
 
@@ -52,10 +52,10 @@ module Api
 	    			@post.destroy
 	    			render json: {status: true, message: "Post deleted successful"}, status: :ok and return
 	    		else
-	    			render json: {status: false, message: "Post not found"}, status: :not_found and return
+	    			render json: {status: false, message: "Post not found"}, status: :ok and return
 	    		end
 	    	rescue Exception => e
-          return render json: { error: e.message }, status: :unprocessable_entity
+          return render json: {status: false,	 error: e.message }, status: :ok
         end
     	end
 

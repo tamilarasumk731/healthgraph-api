@@ -21,6 +21,8 @@ Rails.application.routes.draw do
 	      	put  		"/restore",  	to: "comments#restore_comment"
 	      	delete 	"/delete", 		to: "comments#delete_comment"
 
+	      	get 		"/trash",			to: "comments#get_trash_comment"
+
 	      end
 	    end
 

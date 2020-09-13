@@ -1,2 +1,4 @@
 json.extract! post, :id, :author, :content, :is_deleted if !post.is_deleted
-json.comments post.comments , partial: 'api/v1/posts/comment', as: :comment
+json.comments post.comments do |comment|
+	json.extract! comment, :id, :author, :desc, :is_deleted if !comment.is_deleted
+end
