@@ -15,9 +15,9 @@ default: &default
 
 development:
   <<: *default
+  database: healthgraph_api_development
   username: <%= Rails.application.credentials.send(Rails.env)[:DB_USERNAME] %>
   password: <%= Rails.application.credentials.send(Rails.env)[:DB_PASSWORD] %>
-  database: healthgraph_api_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
