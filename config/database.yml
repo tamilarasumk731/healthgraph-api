@@ -12,11 +12,11 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: <%= Rails.application.credentials.send(Rails.env)[:DB_USERNAME] %>
-  password: <%= Rails.application.credentials.send(Rails.env)[:DB_PASSWORD] %>
 
 development:
   <<: *default
+  username: <%= Rails.application.credentials.send(Rails.env)[:DB_USERNAME] %>
+  password: <%= Rails.application.credentials.send(Rails.env)[:DB_PASSWORD] %>
   database: healthgraph_api_development
 
 # Warning: The database defined as "test" will be erased and
