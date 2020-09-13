@@ -1,0 +1,1 @@
+json.extract! comment, :id, :author, :desc, :is_deleted if !comment.is_deleted

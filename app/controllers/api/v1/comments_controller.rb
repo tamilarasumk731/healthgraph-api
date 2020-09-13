@@ -1,21 +1,21 @@
 module Api
   module V1
     class CommentsController < ApplicationController
-      before_action :set_post
+      before_action :set_post, only: [:create_comment]
 
       def create_comment
-        @comment = @post.comment.new(author: comment_params[:author], desc: comment_params[:desc])
+        @comment = @post.comments.new(author: comment_params[:author], desc: comment_params[:desc])
         if @post.save 
-          render json: {status: true, message: "Post creation successful"}, status: :ok and return
+          render json: {status: true, message: "Comment creation successful"}, status: :ok and return
         else
           render json: { status: false, messages: @post.errors.full_messages.to_sentence }, status: :unprocessable_entity and return
         end
       end
 
       def soft_delete_comment
-        @commnet = Comment.find(params[:commentId])
+        @comment = Comment.find(params[:commentId])
         if @comment
-          @comment.update(is_delted: true)
+          @comment.update(is_deleted: true)
           render json: {status: true, message: "Comment moved to trash"}, status: :ok and return
         else
           render json: {status: false, message: "Comment not found"}, status: :not_found and return
@@ -26,7 +26,7 @@ module Api
         @comment = Comment.find(params[:commentId])
         begin
           if @comment
-            @comment.update(is_delted: false)
+            @comment.update(is_deleted: false)
             render json: {status: true, message: "Comment restored to feed"}, status: :ok and return
           else
             render json: {status: false, message: "Comment not found"}, status: :not_found and return
@@ -36,7 +36,7 @@ module Api
         end
       end
 
-      def detele_comment
+      def delete_comment
         @comment = Comment.find(params[:commentId])
         begin
           if @comment

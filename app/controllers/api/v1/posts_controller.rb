@@ -11,10 +11,18 @@ module Api
 	        end
     	end
 
+    	def get_all_post
+    		@posts = Post.where(is_deleted: false)
+    	end
+
+    	def get_trash_post
+    		@posts = Post.where(is_deleted: true)
+    	end
+
     	def soft_delete_post
     		@post = Post.find(params[:postId])
     		if @post
-    			@post.update(is_delted: true)
+    			@post.update(is_deleted: true)
     			render json: {status: true, message: "Post moved to trash"}, status: :ok and return
     		else
     			render json: {status: false, message: "Post not found"}, status: :not_found and return
@@ -25,8 +33,8 @@ module Api
     		@post = Post.find(params[:postId])
     		begin
 	    		if @post
-	    			@post.update(is_delted: false)
-	    			@post.comments.update_all(is_delted: false)
+	    			@post.update(is_deleted: false)
+	    			@post.comments.update_all(is_deleted: false)
 
 	    			render json: {status: true, message: "Post restored to feed"}, status: :ok and return
 	    		else
@@ -37,7 +45,7 @@ module Api
         end
     	end
 
-    	def detele_post
+    	def delete_post
     		@post = Post.find(params[:postId])
     		begin
 	    		if @post
